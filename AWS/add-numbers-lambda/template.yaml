@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  AddNumbersFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: add_numbers.app.lambda_handler
+      Runtime: python3.8
+      CodeUri: add_numbers/
+      MemorySize: 128
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole

@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  StoreDocumentFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: store_document.app.lambda_handler
+      Runtime: python3.8
+      CodeUri: store_document/
+      MemorySize: 128
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Statement:
+            - Effect: Allow
+              Action:
+                - s3:PutObject
+              Resource: arn:aws:s3:::your-bucket-name/*
+      Environment:
+        Variables:
+          BUCKET_NAME: your-bucket-name
